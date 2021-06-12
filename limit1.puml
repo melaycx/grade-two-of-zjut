@@ -1,0 +1,25 @@
+@startuml
+class limit.AccessLimitInstanceClassThread {
+~ String name
++ void run()
+}
+class limit.LimitInstanceClass {
+~ {static} int value
+~ {static} int temp
+- {static} List<LimitInstanceClass> list
+~ int id
+~ boolean isBusy
+~ String accessMessage
++ void writeAccessMessage(String)
++ void printAccessMessage()
++ void release()
++ {static} LimitInstanceClass getInstance()
+}
+class limit.UseLimitInstanceClass {
++ {static} void main(String[])
+}
+
+limit.UseLimitInstanceClass -->limit.AccessLimitInstanceClassThread
+limit.AccessLimitInstanceClassThread -->limit.LimitInstanceClass
+limit.Thread <|-- limit.AccessLimitInstanceClassThread
+@enduml
